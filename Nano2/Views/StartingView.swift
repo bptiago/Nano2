@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 class StartingView: UIView {
+    var onButtonPress: () -> Void = {}
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
@@ -100,6 +102,12 @@ class StartingView: UIView {
         button.backgroundColor = .appOrange
         button.layer.cornerRadius = 30
         
+        button.addTarget(
+            self,
+            action: #selector(didPressButton),
+            for: .touchUpInside
+        )
+        
         return button
     }()
     
@@ -160,6 +168,12 @@ class StartingView: UIView {
     private func addSubviews() {
         addSubview(mainStackView)
         setupConstraints()
+    }
+    
+    // Actions
+    @objc
+    func didPressButton() {
+        onButtonPress()
     }
 }
 

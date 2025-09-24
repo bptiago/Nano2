@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  QuizViewController.swift
 //  Nano2
 //
 //  Created by Tiago Prestes on 24/09/25.
@@ -7,14 +7,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class QuizViewController: UIViewController {
     
-    private let startingView = StartingView()
+    private let quizView = QuizView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view = startingView
+        self.view = quizView
     }
-
-
 }

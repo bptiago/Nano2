@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
-        let rootViewcontroller: UIViewController = ViewController()
+        let rootViewcontroller: UIViewController = StartViewController()
         let navigationController = UINavigationController(rootViewController: rootViewcontroller) // Isso é tipo um navigationStack que será aplicada na raiz do projeto
 
         window?.rootViewController = navigationController
