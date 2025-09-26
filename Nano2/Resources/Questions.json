@@ -1,0 +1,43 @@
+[
+  {
+    "question": "Quanto de carne uma pessoa consome em média em um churrasco?",
+    "options": ["200g", "400g", "600g", "1kg"],
+    "answer": 1
+  },
+  {
+    "question": "Quantas latas de cerveja comprar para 5 pessoas que bebem moderadamente?",
+    "options": ["5", "10", "15", "20"],
+    "answer": 2
+  },
+  {
+    "question": "Qual é a quantidade média de refrigerante por pessoa em uma festa curta?",
+    "options": ["200ml", "500ml", "1L", "2L"],
+    "answer": 2
+  },
+  {
+    "question": "Quanto tempo leva em média para preparar a churrasqueira com carvão?",
+    "options": ["5 minutos", "15 minutos", "30 minutos", "1 hora"],
+    "answer": 2
+  },
+  {
+    "question": "Qual é o valor médio de um app de transporte em rolês de curta distância?",
+    "options": ["R$10", "R$25", "R$40", "R$60"],
+    "answer": 1
+  },
+  {
+    "question": "Quantos acompanhamentos básicos não podem faltar em um churrasco?",
+    "options": ["1 (farofa)", "2 (farofa e pão)", "3 (farofa, pão e vinagrete)", "4 ou mais"],
+    "answer": 2
+  },
+  {
+    "question": "Qual a média de tempo que um grupo pequeno demora para decidir o destino do rolê?",
+    "options": ["5 minutos", "15 minutos", "30 minutos", "1 hora ou mais"],
+    "answer": 1
+  },
+  {
+    "question": "O que é mais prático para um rolê de última hora?",
+    "options": ["Preparar comida em casa", "Comprar pronto no mercado", "Pedir delivery", "Cancelar o rolê"],
+    "answer": 2
+  }
+]
+

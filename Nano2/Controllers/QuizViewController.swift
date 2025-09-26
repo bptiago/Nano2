@@ -10,6 +10,7 @@ import UIKit
 class QuizViewController: UIViewController {
     
     private let quizView = QuizView()
+    private let dataSource = DataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
