@@ -6,20 +6,19 @@ protocol JsonFile {
     
     var fileName: String { get }
     
-    func loadFile() -> Data?
+    func loadFile() -> Data
     func decode() -> [T]
 //    func encode(_ data: Data)
 }
 
 extension JsonFile {
-    func loadFile() -> Data? {
+    func loadFile() -> Data {
         guard let url = Bundle.main.url(forResource: fileName, withExtension: "json") else {
-            print("File not found")
-            return nil
+            fatalError("File not found: \(fileName).json")
         }
         
         guard let data = try? Data(contentsOf: url) else {
-            return nil
+            fatalError("Failed to load data from \(fileName).json")
         }
         
         return data
@@ -28,11 +27,6 @@ extension JsonFile {
     func decode() -> [T] {
         let data = loadFile()
         
-        guard let data else {
-            print("Failed to load data from \(fileName)")
-            return []
-        }
-
         let decoder = JSONDecoder()
         
         do {

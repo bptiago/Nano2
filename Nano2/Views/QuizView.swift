@@ -8,12 +8,122 @@
 import UIKit
 
 class QuizView: UIView {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.backgroundColor = .blue
-    }
+    var onButtonPress: () -> Void = {}
+    var quizNode: QuizNode
     
+    init(quizNode: QuizNode, frame: CGRect = .zero) {
+        self.quizNode = quizNode
+        super.init(frame: frame)
+        self.backgroundColor = .white
+        addSubviews()
+    }
+
+    @available(*, unavailable, message: "Use init(quizNode:) for ViewCode.")
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // Actions
+    @objc
+    func didPressButton() {
+        onButtonPress()
+    }
+    
+    /// Elementos
+    lazy var imageView: UIImageView = {
+        let image = UIImage(resource: .quiz)
+        
+        let imageView = UIImageView(image: image)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        
+        return imageView
+    }()
+    
+    lazy var questionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.text = quizNode.question
+        label.font = .systemFont(ofSize: DesignToken.title1, weight: .bold)
+        
+        return label
+    }()
+    
+    private func makeAnswerButton(title: String) -> UIButton {
+        let button = UIButton(type: .system)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.setTitle(title, for: .normal)
+        button.contentHorizontalAlignment = .leading
+        button.tintColor = .black
+        
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.appOrange.cgColor
+        button.layer.cornerRadius = 8
+        
+        button.addTarget(
+            self,
+            action: #selector(didPressButton),
+            for: .touchUpInside
+        )
+        
+        button.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 360).isActive = true
+        
+        return button
+    }
+    
+    /// Layout / Stacks
+    lazy var mainStackView: UIStackView = {
+        let stack = UIStackView(
+            arrangedSubviews: [imageView, questionLabel, optionsStackView]
+        )
+        
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        
+        stack.axis = .vertical
+        stack.alignment = .top
+        stack.spacing = 32
+        
+        return stack
+    }()
+    
+    lazy var optionsStackView: UIStackView = {
+        let buttons: [UIButton] = quizNode.options.map { option in
+            return makeAnswerButton(title: option)
+        }
+        
+        let stack = UIStackView(
+            arrangedSubviews: buttons
+        )
+        
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        
+        stack.axis = .vertical
+        stack.alignment = .fill
+        stack.distribution = .equalSpacing
+        stack.spacing = 16
+        
+        return stack
+    }()
+    
+    ///Setup
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            mainStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            mainStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            mainStackView.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 16),
+            mainStackView.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -16),
+            
+            imageView.widthAnchor.constraint(equalToConstant: 360),
+            imageView.heightAnchor.constraint(equalToConstant: 255),
+        ])
+    }
+    
+    private func addSubviews() {
+        addSubview(mainStackView)
+        setupConstraints()
     }
 }

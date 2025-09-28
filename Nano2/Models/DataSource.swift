@@ -12,11 +12,7 @@ struct DataSource: Identifiable, JsonFile {
     
     let id = UUID()
     let fileName: String = "Questions"
-    var data: [T]?
-    
-    init() {
-        self.data = decode()
-    }
+    var data: [T] { decode() }
 }
 
 struct QuizNode: Identifiable, Decodable {
