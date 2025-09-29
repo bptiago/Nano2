@@ -10,9 +10,11 @@ import UIKit
 class ResultView: UIView {
     var onButtonPress: () -> Void = {}
     var score: Int
+    var resultType: ResultType
     
     init(score: Int, frame: CGRect = .zero) {
         self.score = score
+        self.resultType = ResultType.from(score)
         
         super.init(frame: frame)
         self.backgroundColor = .white
@@ -42,7 +44,7 @@ class ResultView: UIView {
     }()
     
     lazy var imageView: UIImageView = {
-        let image = UIImage(resource: .timeout)
+        let image = UIImage(resource: self.resultType.image)
         
         let imageView = UIImageView(image: image)
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -51,32 +53,32 @@ class ResultView: UIView {
         return imageView
     }()
     
-    let textTitle: UILabel = {
+    lazy var textTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.text = "O seu tempo acabou..."
+        label.text = self.resultType.title
         label.font = .systemFont(ofSize: DesignToken.body, weight: .semibold)
         label.textAlignment = .left
         
         return label
     }()
     
-    let textBody1: UILabel = {
+    lazy var textBody1: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.text = "Vocês se enrolaram ali no segundo tempo e não conseguiram se organizar. Agora o rolê tá meio improvisado, nada do jeito que vocês queriam."
+        label.text = self.resultType.description
         label.textAlignment = .left
         
         return label
     }()
     
-    let textBody2: UILabel = {
+    lazy var textBody2: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.text = "Mas já que tá marcado, bora fazer o melhor possível né."
+        label.text = self.resultType.endingPhrase
         label.textAlignment = .left
         
         return label
