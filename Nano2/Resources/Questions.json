@@ -10,33 +10,38 @@
     "answer": 2
   },
   {
+    "question": "Qual cerveja você compraria para o rolê?",
+    "options": ["Heineken 🧃", "Skol ⁉️", "Brahma 🤔", "Original - 600ml 👍👍"],
+    "answer": 3
+  },
+  {
     "question": "Qual é a quantidade média de refrigerante por pessoa em uma festa curta?",
     "options": ["200ml", "500ml", "1L", "2L"],
     "answer": 2
   },
   {
-    "question": "Quanto tempo leva em média para preparar a churrasqueira com carvão?",
-    "options": ["5 minutos", "15 minutos", "30 minutos", "1 hora"],
-    "answer": 2
+    "question": "Quantos espetinhos comprar para 30 pessoas? (responsabilizar Luís Poeta da Espetinhos Canaã)",
+    "options": ["150 espetinhos", "50 espetinhos", "75 espetinhos", "90 espetinhos"],
+    "answer": 0
   },
   {
-    "question": "Qual é o valor médio de um app de transporte em rolês de curta distância?",
-    "options": ["R$10", "R$25", "R$40", "R$60"],
+    "question": "Qual o valor médio de uma corrida curta de transporte por aplicativo em Curitiba?",
+    "options": ["R$8,00", "R$15,00", "R$25,00", "R$35,00"],
     "answer": 1
   },
   {
-    "question": "Quantos acompanhamentos básicos não podem faltar em um churrasco?",
-    "options": ["1 (farofa)", "2 (farofa e pão)", "3 (farofa, pão e vinagrete)", "4 ou mais"],
-    "answer": 2
+    "question": "Quanto tempo demora para um grupo decidir o destino do rolê? (era Pré-Contrail)",
+    "options": ["Vocês não se decidem", "15 minutos", "30 minutos", "Uma semana"],
+    "answer": 0
   },
   {
-    "question": "Qual a média de tempo que um grupo pequeno demora para decidir o destino do rolê?",
-    "options": ["5 minutos", "15 minutos", "30 minutos", "1 hora ou mais"],
-    "answer": 1
-  },
-  {
-    "question": "O que é mais prático para um rolê de última hora?",
-    "options": ["Preparar comida em casa", "Comprar pronto no mercado", "Pedir delivery", "Cancelar o rolê"],
+    "question": "O que comprar de bebida para seus amigos que não gostam de cerveja?",
+    "options": [
+        "Vodka Natasha",
+        "Sangue de boi 🧛🧛🧛🧛",
+        "Corote de baunilha com limão (mano??)",
+        "Campo Largo Tinto Suave 750mL (Desde 1942)"
+    ],
     "answer": 2
   }
 ]
