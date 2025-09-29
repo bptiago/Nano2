@@ -49,7 +49,7 @@ class QuizView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: DesignToken.title1, weight: .bold)
+        label.font = .systemFont(ofSize: DesignToken.title2, weight: .bold)
         
         return label
     }()
