@@ -13,6 +13,7 @@ class QuizView: UIView {
     
     init(quizNode: QuizNode, frame: CGRect = .zero) {
         self.quizNode = quizNode
+        
         super.init(frame: frame)
         self.backgroundColor = .white
         addSubviews()
@@ -44,13 +45,12 @@ class QuizView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.text = quizNode.question
         label.font = .systemFont(ofSize: DesignToken.title1, weight: .bold)
         
         return label
     }()
     
-    private func makeAnswerButton(title: String) -> UIButton {
+    private func makeOptionButton(title: String) -> UIButton {
         let button = UIButton(type: .system)
         
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -91,13 +91,7 @@ class QuizView: UIView {
     }()
     
     lazy var optionsStackView: UIStackView = {
-        let buttons: [UIButton] = quizNode.options.map { option in
-            return makeAnswerButton(title: option)
-        }
-        
-        let stack = UIStackView(
-            arrangedSubviews: buttons
-        )
+        let stack = UIStackView()
         
         stack.translatesAutoresizingMaskIntoConstraints = false
         
@@ -124,6 +118,20 @@ class QuizView: UIView {
     
     private func addSubviews() {
         addSubview(mainStackView)
+        loadContent(with: quizNode)
         setupConstraints()
+    }
+    
+    func loadContent(with quizNode: QuizNode) {
+        self.quizNode = quizNode
+        
+        questionLabel.text = quizNode.question
+        
+        optionsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        for opt in quizNode.options {
+            let button = makeOptionButton(title: opt)
+            optionsStackView.addArrangedSubview(button)
+        }
     }
 }

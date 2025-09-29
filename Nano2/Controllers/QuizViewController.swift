@@ -30,7 +30,7 @@ class QuizViewController: UIViewController {
         navigationItem.hidesBackButton = true
         
         self.view = quizView
-//        quizView.onButtonPress = updateQuizNode
+        quizView.onButtonPress = updateQuizNode
     }
     
     func updateQuizNode() {
@@ -41,5 +41,6 @@ class QuizViewController: UIViewController {
         count += 1
         let newQuizNode = dataSource.data[count]
         self.quizNode = newQuizNode
+        quizView.loadContent(with: quizNode)
     }
 }
