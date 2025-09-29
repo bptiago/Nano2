@@ -8,24 +8,35 @@
 import UIKit
 
 class ResultView: UIView {
+    var onButtonPress: () -> Void = {}
+    var score: Int
     
-    override init(frame: CGRect) {
+    init(score: Int, frame: CGRect = .zero) {
+        self.score = score
+        
         super.init(frame: frame)
         self.backgroundColor = .white
-        self.addSubviews()
+        addSubviews()
     }
     
+    @available(*, unavailable, message: "Use init(quizNode:) for ViewCode.")
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    /// Actions
+    @objc
+    private func didPressButton() {
+        onButtonPress()
     }
     
     /// Elementos
-    let scoreLabel: UILabel = {
+    lazy var scoreLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: DesignToken.title1, weight: .bold)
-        label.text = "Score: 30/100"
+        label.text = String(format: "Score: %d/80", score)
         
         return label
     }()
@@ -82,11 +93,11 @@ class ResultView: UIView {
         button.backgroundColor = .appOrange
         button.layer.cornerRadius = 30
         
-//        button.addTarget(
-//            self,
-//            action: #selector(didPressButton),
-//            for: .touchUpInside
-//        )
+        button.addTarget(
+            self,
+            action: #selector(didPressButton),
+            for: .touchUpInside
+        )
         
         return button
     }()

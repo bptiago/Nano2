@@ -14,6 +14,7 @@ class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = startingView
+        self.navigationItem.hidesBackButton = true
         startingView.onButtonPress = navigateToQuiz
     }
     

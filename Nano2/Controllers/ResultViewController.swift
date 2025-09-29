@@ -8,11 +8,12 @@
 import UIKit
 
 class ResultViewController: UIViewController {
-    private let resultView: ResultView = ResultView()
+    private let resultView: ResultView
     private let score: Int
     
     init(score: Int) {
         self.score = score
+        self.resultView = ResultView(score: score)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,6 +25,11 @@ class ResultViewController: UIViewController {
         super.viewDidLoad()
         self.view = resultView
         self.navigationItem.hidesBackButton = true
+        resultView.onButtonPress = resetQuiz
     }
     
+    func resetQuiz() {
+        let startViewController = StartViewController()
+        navigationController?.pushViewController(startViewController, animated: true)
+    }
 }
