@@ -13,6 +13,7 @@ class QuizViewController: UIViewController {
     
     private let dataSource = DataSource()
     private var count: Int = 0
+    private var score: Int = 0
     
     init() {
         self.quizNode = dataSource.data[count]
@@ -30,11 +31,17 @@ class QuizViewController: UIViewController {
         navigationItem.hidesBackButton = true
         
         self.view = quizView
-        quizView.onButtonPress = updateQuizNode
+        quizView.updateQuizNode = updateQuizNode
+        quizView.updateScore = updateScore
+    }
+    
+    func updateScore() {
+        score += 10
     }
     
     func updateQuizNode() {
         if count >= dataSource.data.count - 1 {
+            navigateToResult()
             return
         }
         
@@ -42,5 +49,10 @@ class QuizViewController: UIViewController {
         let newQuizNode = dataSource.data[count]
         self.quizNode = newQuizNode
         quizView.loadContent(with: quizNode)
+    }
+    
+    func navigateToResult() {
+        let resultViewController = ResultViewController(score: score)
+        navigationController?.pushViewController(resultViewController, animated: true)
     }
 }

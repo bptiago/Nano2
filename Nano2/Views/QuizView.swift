@@ -8,7 +8,8 @@
 import UIKit
 
 class QuizView: UIView {
-    var onButtonPress: () -> Void = {}
+    var updateScore: () -> Void = {}
+    var updateQuizNode: () -> Void = {}
     var quizNode: QuizNode
     
     init(quizNode: QuizNode, frame: CGRect = .zero) {
@@ -26,8 +27,11 @@ class QuizView: UIView {
     
     // Actions
     @objc
-    func didPressButton() {
-        onButtonPress()
+    func didPressButton(_ sender: UIButton) {
+        if sender.titleLabel?.text == quizNode.options[quizNode.answer] {
+            updateScore()
+        }
+        updateQuizNode()
     }
     
     /// Elementos
@@ -65,7 +69,7 @@ class QuizView: UIView {
         
         button.addTarget(
             self,
-            action: #selector(didPressButton),
+            action: #selector(didPressButton(_:)),
             for: .touchUpInside
         )
         
